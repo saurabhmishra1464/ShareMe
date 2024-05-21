@@ -9,15 +9,19 @@ import logo from '../assets/logo.png';
 import Pins from './Pins';
 import { userQuery } from '../Utils/data';
 const Home = () => {
+  debugger
   const [toggleSidebar, settoggleSidebar] = useState(false);
   const [user, setUser] = useState(null);
   const scrollRef = useRef(null);
   const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
 
   useEffect(() => {
-    const query = userQuery(userInfo?.googleId);
+    debugger
+    const query = userQuery(userInfo?.sub);
+
     client.fetch(query).then((data) => {
       setUser(data[0]);
+      console.log('User fetched from Sanity:', data[0]);
     })
   }, [])
 
@@ -37,17 +41,17 @@ const Home = () => {
             <img src={logo} alt="logo" className='w-28' />
           </Link>
           <Link to={'user-profile/${user?.id}'}>
-            <img src={user?.image} alt="logo" className='w-28' />
+            <img src={user?.image} alt="logo" className='w-10' />
           </Link>
         </div>
-      {toggleSidebar && (
-        <div className='fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in'>
-          <div className='absolute w-full flex justify-end items-center p-2'>
-            <AiFillCloseCircle fontSize={30} className='cursor-pointer' onClick={() => settoggleSidebar(false)} />
+        {toggleSidebar && (
+          <div className='fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in'>
+            <div className='absolute w-full flex justify-end items-center p-2'>
+              <AiFillCloseCircle fontSize={30} className='cursor-pointer' onClick={() => settoggleSidebar(false)} />
+            </div>
+            <Sidebar user={user && user} closeToggle={settoggleSidebar} />
           </div>
-          <Sidebar user={user && user} closeToggle={settoggleSidebar} />
-        </div>
-      )}
+        )}
       </div>
       <div className='pb-2 flex-1 h-screen overflow-y-scroll' ref={scrollRef}>
         <Routes>
