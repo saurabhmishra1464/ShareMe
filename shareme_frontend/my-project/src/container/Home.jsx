@@ -25,7 +25,7 @@ const Home = () => {
     })
   }, [])
 
-  useEffect(() => {
+  useEffect(() => { 
     scrollRef.current.scrollTo(0, 0)
   }, [])
 
