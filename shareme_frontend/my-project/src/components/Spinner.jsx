@@ -1,7 +1,6 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
 const Spinner = ({message}) => {
-  debugger
   return (
     <div className='flex flex-col justify-center items-center w-full h-full'>
      <Loader 
