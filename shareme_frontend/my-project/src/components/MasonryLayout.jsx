@@ -13,7 +13,6 @@ const breakpointObj = {
 
 
 const MasonryLayout = ({pins}) => {
-  debugger
   return (
     <Masonry className='flex animate-slide-fwd' breakpointCols={breakpointObj}>
 

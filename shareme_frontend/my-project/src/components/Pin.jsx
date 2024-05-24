@@ -9,7 +9,7 @@ import { client, urlFor } from '../client';
 import { fetchUser } from '../Utils/fetchUser';
 
 const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
-  debugger
+
   const [postHovered, setPostHovered] = useState(false);
 
   const navigate = useNavigate();
@@ -19,7 +19,6 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
   const alreadySaved = !!(save?.filter((item) => item.postedBy && item.postedBy._id === user.sub))?.length;
 
   const savePin = (id) => {
-    debugger
     if (!alreadySaved) {
       client.patch(id)
         .setIfMissing({ save: [] })

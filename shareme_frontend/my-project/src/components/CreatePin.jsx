@@ -8,7 +8,6 @@ import Spinner from './Spinner';
 import { categories } from '../Utils/data';
 
 const CreatePin = ({ user }) => {
-  debugger
   const [title, setTitle] = useState('');
   const [about, setAbout] = useState('');
   const [destination, setDestination] = useState('');
